@@ -1,6 +1,6 @@
 {
   "name": "@mudstack/webtoon-psd",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "lightweight psd file parser with no dependency written in typescript",
   "homepage": "https://webtoon.github.io/psd",
   "license": "MIT",

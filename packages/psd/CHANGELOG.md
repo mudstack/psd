@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.0 (2024-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* parse layer hidden, transparency lock flags
+* remove named export 'parse()'
+* export Group, Layer, Slice as types only
+* init WASM during decode, no top-level init
+* implement Rust/WebAssembly-based decoder
+
+### Features
+
+* add web-based benchmark page ([9bc26f9](https://github.com/mudstack/psd/commit/9bc26f9921585acabab6c31cafcbff441623e03e))
+* AdditionalLayerInfos; LinkedLayers ([#54](https://github.com/mudstack/psd/issues/54)) ([bf9540b](https://github.com/mudstack/psd/commit/bf9540b784e23dcfe49b30fdba2931177d500ae2))
+* **benchmark:** provide sample PSD file w/ download link ([d907f05](https://github.com/mudstack/psd/commit/d907f0587ff50213751e14fb8f73f74957091a32))
+* Change PatternData.channels to an array ([b9093f8](https://github.com/mudstack/psd/commit/b9093f8e5ee5f5f5a6868c4590293265f7f775bb))
+* check for compat with Edge 79+, Node 12+ ([ff8f310](https://github.com/mudstack/psd/commit/ff8f310c3f77c4f09675f651e4db64ccb74e5cde))
+* export Group, Layer, Slice as types only ([564b5a5](https://github.com/mudstack/psd/commit/564b5a5a7a87c40458e837c70902164d3e283660))
+* expose ICC profile ([aa7679e](https://github.com/mudstack/psd/commit/aa7679e6e79e22b8ea8ff8a8d4414cc90d6d7bf7))
+* Implement additional ImageResources ([#55](https://github.com/mudstack/psd/issues/55)) ([1d1e702](https://github.com/mudstack/psd/commit/1d1e70234282e09da2404132368d5bbbb4d31aa5))
+* implement EngineData parsing ([8c5f09c](https://github.com/mudstack/psd/commit/8c5f09cf5b0338cda1344b56dd1aa9b1979da195))
+* Implement reading mask data ([#56](https://github.com/mudstack/psd/issues/56)) ([0f99674](https://github.com/mudstack/psd/commit/0f9967493297a139d4773b1bb63991a6d8ae6b72))
+* implement Rust/WebAssembly-based decoder ([020f7a0](https://github.com/mudstack/psd/commit/020f7a00e9244a8b5c7cc30d8c68b62b2574a969))
+* init WASM during decode, no top-level init ([0b0bb68](https://github.com/mudstack/psd/commit/0b0bb6822859c034ab8fb6345a7f301c249b0b44))
+* parse layer hidden, transparency lock flags ([1caf69b](https://github.com/mudstack/psd/commit/1caf69b927cde01609e8b26a68c40eae80d58606))
+
+
+### Bug Fixes
+
+* ALI block 'cinf' has diffent size for PSB ([70ffd71](https://github.com/mudstack/psd/commit/70ffd7107490400a6d4d5f9a595e8e0b95e60c91))
+* **benchmark:** don't show indeterminate progressbar on initial load ([2f28afa](https://github.com/mudstack/psd/commit/2f28afa0a0cc0da69a4172809a750b2f73d2a288))
+* **demo:** allow opening PSD files on Windows ([9234673](https://github.com/mudstack/psd/commit/9234673d2a1100f06d10cbf45dc5957c125c1194))
+* Don't align ALI block size to 4 byte boundary ([f4fc949](https://github.com/mudstack/psd/commit/f4fc9497d2826aeaed17910194dc9e8f7130ebe9))
+* handle empty channel data ([9cd2d8f](https://github.com/mudstack/psd/commit/9cd2d8f1caeeed778a9c902892f524d2d96b3f1b))
+* left sidebar width in wider screen ([702eeed](https://github.com/mudstack/psd/commit/702eeed01ae1da5338cf7aeb2b45002cb33c45ef))
+* readme update. need to fileVariable name instead of module name ([1b6d1ca](https://github.com/mudstack/psd/commit/1b6d1ca25d295bf2956191f466d358bc4a823a59))
+* typo in PatternDataRectangle ([2295b53](https://github.com/mudstack/psd/commit/2295b5320cbf0de335aad2f107bef35698d1e6fb))
+* update main and types in package.json ([403670a](https://github.com/mudstack/psd/commit/403670abe032f15d1f9755935a90d04c2b33e2f3))
+
+
+### Code Refactoring
+
+* remove named export 'parse()' ([86af282](https://github.com/mudstack/psd/commit/86af282efa6b4bef05f8ea6148461230bf01ab28))
+
 ## [0.4.0](https://github.com/webtoon/psd/compare/0.3.0...0.4.0) (2023-06-27)
 
 ### ⚠ BREAKING CHANGES
