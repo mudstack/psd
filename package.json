@@ -4,16 +4,12 @@
     "packages/*/"
   ],
   "scripts": {
-    "build": "npm -w @webtoon/psd run build",
+    "build": "npm -w @mudstack/webtoon-psd run build",
     "clear": "rimraf --glob 'packages/*/dist/' dist-web/",
-    "deploy": "npm -w @webtoon/psd-example-browser -w @webtoon/psd-benchmark run build && gh-pages -d dist-web/",
     "fix": "eslint --fix . && prettier --write .",
     "lint": "eslint . && prettier --check .",
     "prepare": "husky install",
-    "release": "npm -w @webtoon/psd run release",
-    "start:benchmark": "npm -w @webtoon/psd-benchmark start --watch",
-    "start:browser": "npm -w @webtoon/psd-example-browser start --watch",
-    "start:node": "npm -w @webtoon/psd-example-node start --watch",
+    "release": "npm -w @mudstack/webtoon-psd run release",
     "test": "npm --workspaces --if-present test"
   },
   "browserslist": [
