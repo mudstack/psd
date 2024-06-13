@@ -3,6 +3,8 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.2](https://github.com/mudstack/psd/compare/2.0.0...2.0.2) (2024-06-13)
+
 ### [2.0.1](https://github.com/mudstack/psd/compare/2.0.0...2.0.1) (2024-06-13)
 
 ## 2.0.0 (2024-05-05)
