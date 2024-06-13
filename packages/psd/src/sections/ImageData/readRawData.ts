@@ -10,7 +10,6 @@ export function readRawData(
   depth: Depth,
   channelCount: number,
 ): { red: Uint8Array; green?: Uint8Array; blue?: Uint8Array; alpha?: Uint8Array } {
-  // Calculate bytes per sample based on depth
   const bytesPerSample =
     depth === Depth.Eight ? 1 : depth === Depth.Sixteen ? 2 : depth === Depth.ThirtyTwo ? 4 : 0;
 
@@ -18,31 +17,38 @@ export function readRawData(
     throw new UnsupportedDepth(`Unsupported image bit depth: ${depth}`);
   }
 
-  // Calculate the number of samples per channel
-  const totalBytesPerChannel = (cursor.length - cursor.position) / channelCount;
-  const samplesCountPerChannel = totalBytesPerChannel / bytesPerSample;
+  const totalBytesForAllChannels = cursor.length - cursor.position;
+  const samplesCountPerChannel = totalBytesForAllChannels / bytesPerSample / channelCount;
 
-  const convertData = (data: DataView, depth: Depth): Uint8Array => {
-    const result = new Uint8Array(samplesCountPerChannel);
-    for (let i = 0; i < samplesCountPerChannel; i++) {
+  const convertData = (data: DataView, count: number): Uint8Array => {
+    const result = new Uint8Array(count);
+    for (let i = 0; i < count; i++) {
       if (depth === Depth.Eight) {
         result[i] = data.getUint8(i);
       } else if (depth === Depth.Sixteen) {
-        const value = data.getUint16(i * 2);
-        result[i] = Math.round((value / 65535) * 255);
+        // Convert 16-bit data to 8-bit by scaling
+        const index = i * 2; // Each 16-bit sample occupies 2 bytes
+        const value = data.getUint16(index, false); // Assuming big-endian format
+        result[i] = Math.floor(value / 257); // Scale down from 0-65535 to 0-255
       } else if (depth === Depth.ThirtyTwo) {
-        const value = data.getFloat32(i * 4);
-        result[i] = Math.min(255, Math.max(0, Math.round(value * 255)));
+        // Convert 32-bit floating point data to 8-bit
+        const index = i * 4; // Each 32-bit float occupies 4 bytes
+        const value = data.getFloat32(index, false); // Assuming big-endian format
+        result[i] = Math.min(255, Math.max(0, Math.round(value * 255))); // Scale from 0.0-1.0 to 0-255
+      } else {
+        result[i] = 0;
       }
     }
     return result;
   };
 
   const readChannelData = (): Uint8Array => {
-    const channelData = cursor.extract(totalBytesPerChannel);
+    const bytesForChannel = samplesCountPerChannel * bytesPerSample;
+    const channelData = cursor.extract(bytesForChannel);
+    cursor.pass(bytesForChannel); // Move the cursor forward after reading
     return convertData(
-      new DataView(channelData.buffer, channelData.byteOffset, totalBytesPerChannel),
-      depth,
+      new DataView(channelData.buffer, channelData.byteOffset, channelData.byteLength),
+      samplesCountPerChannel,
     );
   };
 
